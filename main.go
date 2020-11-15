@@ -8,11 +8,8 @@ import (
 	"strings"
 )
 
-func sha(text string) string {
-	return fmt.Sprintf("%X", sha256.Sum256([]byte(text)))
-}
-
 func autismEncrypt(text string) []byte {
+	shatext := fmt.Sprintf("%X", sha256.Sum256([]byte(text)))
 	contents, err := ioutil.ReadFile("./key.json")
 	if err != nil {
 		fmt.Println("Had an err: ", err)
@@ -24,7 +21,7 @@ func autismEncrypt(text string) []byte {
 		fmt.Println("Had an err: ", errr)
 	}
 	var output = ""
-	for _, char := range text {
+	for _, char := range shatext {
 		autism := key[string(char)]
 		byteautism, errrr := json.Marshal(autism)
 		if errrr != nil {

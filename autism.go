@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func autismEncrypt(text string) []byte {
+func AutismEncrypt(text string) []byte {
 	shatext := fmt.Sprintf("%X", sha256.Sum256([]byte(text)))
 	contents, err := ioutil.ReadFile("./key.json")
 	if err != nil {

@@ -2,7 +2,6 @@ package autism
 
 import (
 	"crypto/sha256"
-	"encoding/json"
 	"fmt"
 	"strings"
 )
@@ -18,16 +17,8 @@ func AutismEncrypt(text string) []byte {
 	}
 	var output = ""
 	for _, char := range shatext {
-		autism := key[string(char)]
-		byteautism, err := json.Marshal(autism)
-		if err != nil {
-			fmt.Println("Had an err: ", err)
-		}
-		stringautism := string(byteautism)
-		if stringautism == "null" {
-			fmt.Println("NULL for ", string(char))
-		}
-		output += strings.ReplaceAll(stringautism, "\"", "")
+		autistiChar := key[string(char)]
+		output += strings.ReplaceAll(autistiChar, "\"", "")
 	}
 	return []byte(output)
 }
